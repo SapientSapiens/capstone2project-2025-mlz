@@ -59,3 +59,23 @@
  - **Supply Chain Management:** Supporting agricultural businesses and retailers by providing better forecasts of crop availability and helping with inventory and distribution planning.
  - **Government Planning:** Assisting policymakers in assessing agricultural productivity and formulating policies for food security and resource management.
  - **Sustainable Agriculture:** Promoting environmentally sustainable farming practices by predicting and minimizing resource usage based on crop needs and conditions.
+
+
+## Exploratory Data Analysis ##
+
+
+ **Cleaning and preparation of the dataset have been done as prerequisites to the EDA here involving:**
+
+  - Loading the dataset and checking its basic information.
+  - Sanitizing column names.
+  - Checking null and duplicates in the dataset
+  - Removing anomalous data from the target feature.
+  - Assigning appropriate datatypes to featrures/columns
+
+ For the Exploratory Data Analysis , starting with drawing inference from basic statistical data, I move on for an extensive EDA involving:
+
+  - Analysis of the Target feature (Crop Yield in tons per hectare of land)
+  - Checking count distribution and unique values of the categorical features
+  - Analysis of the target variable with respect to the categorical attributes of the dataset
+  - Analysis of the dataset for detecting outliers in the continuous features
+  - 
