@@ -225,13 +225,17 @@
 
    ![alt text](images/image13.png)
 
- 3\. After you application is successfully created, from the virtual environment from within the project directory, issue following command to launch the environment. On successful launching of the cloud environment, We shall also get the URL/Domain name here starting with "Application available at <...> "
+ 3\. After you application is successfully created, from the virtual environment from within the project directory, issue following command to launch the environment. On successful launching of the cloud environment, We shall also get the URL/Domain name here starting with "_Application available at capstone2-mlz-cloud.eba-u486zufw.eu-north-1.elasticbeanstalk.com_"
 
     eb create capstone2-mlz-cloud --enable-spot
+
+   ![alt text](images/image14.png)
+
+   ![alt text](images/image15.png)
 
  4\. I have used this URL in a test script namely cloud_test.py to test the containerized application hosted at the AWS EB. We run it to check if our dockerized application in the cloud is working is properly and the model is serving the prediction.
 
     python cloud_test.py
 
-
+   ![alt text](images/image16.png)
  
