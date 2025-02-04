@@ -189,6 +189,8 @@
 
     docker build -t capstone2-mlz .
 
+   ![alt text](images/image7.png)
+
  6\. After the image is built and the application successfully containerized, we can list the image from the WSL by following command
 
     docker images
