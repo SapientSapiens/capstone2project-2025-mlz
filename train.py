@@ -100,6 +100,18 @@ print(f'RMSE of the trained model: {rmse_lr:.4f}')
 print(f'R² of the trained model: {r2_lr:.4f}')
 
 
+# Save the DictVectorizer
+with open('dict_vectorizer.bin', 'wb') as f_out:
+    pickle.dump(dv, f_out)
+print('The DictVectorizer has and saved as --> dict_vectorizer.bin')
+
+
+# Save the MinMaxScaler
+with open('minmax_scaler.bin', 'wb') as f_out:
+    pickle.dump(minmax_scaler, f_out)
+print('The MinMaxScaler has been saved as --> minmax_scaler.bin')
+
+
 # saving the model
 with open('model_final.bin', 'wb') as file_out:
     pickle.dump(lr_model, file_out)
