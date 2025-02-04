@@ -195,9 +195,13 @@
 
     docker images
 
+   ![alt text](images/image8.png)
+
  7\.  Now run the containerized application.
 
     docker run -it --rm -p 9696:9696 capstone2-mlz
+
+   ![alt text](images/image9.png)
 
  8\. Now activate virtual environment in another WSL tab from inside the project directory and run the **test.py** from that virtual environment from inside the project directory to get the **predict service** from the containerized application
 
