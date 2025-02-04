@@ -207,6 +207,7 @@
 
     python test.py
 
+   ![alt text](images/image10.png)
 
 ## Cloud Deployment ##
 
