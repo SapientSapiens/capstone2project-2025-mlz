@@ -81,10 +81,8 @@
   - Checking the correlation among the all the continuous feature including the target feature with a Heatmap analysis
   - Analysing the inpact of the most significant independent feature in the feature matrix on the target variable for different soil types.
   
- These exercises could be found in my notebook.ipynb
+ _These exercises could be found in my_ **_notebook.ipynb_**
  
-
-
 
 ## Model Training ##
 
@@ -102,8 +100,120 @@
   - With the best evaluated paramenters for each of the models, compared the R² and RMSE metrics and found the best model.
   - For the best evaluated model, did training with the full train dataset and validated with the test dataset.
 
- These exercises could be found in my notebook.ipynb
+ _These exercises could be found in my_ **_notebook.ipynb_**
 
 
 
 ## Exporting the Training Notebook to Script ##
+
+  All data structure and data transformation including their preparation & cleaning, feature scaling, feature selection and model training of the best evaluated model have been exported from the notebook in the form of a script namely train.py Running this script will outcome in the generation of the model_final.bin file which holds the final trained model.
+
+
+## Dependency and environment management ##
+
+
+ _All project dependencies are listed in the_ **_Pipfile_**
+
+ 1\. Go the your wsl environment from you powershell terminal with administrator privilege. You should land in your WSL home directory by default.
+
+     wsl
+
+ 2\. If you do not have pipenv installed already, you can install it by with the command
+
+     pip install pipenv
+
+
+ 3\. From your home directory at WSL, clone my GitHub project repository with the link I submitted
+
+     git clone https://github.com/SapientSapiens/capstone2project-2025-mlz.git
+
+
+ 4\. Go inside that cloned directory
+
+     cd capstone2project-2025-mlz
+
+
+ 5\. Install all dependencies/packages mentioned in the **Pipfile** within the new virtual environment being created
+
+     pipenv install
+
+
+ 6\. Activate the new virtual environment created:
+
+     pipenv shell
+
+
+
+
+## Reproducibility ##
+
+ 1\. In your virtual environment, form within the project directory, run the jupyter notebook. From the Jupyter notebook GUI, you can open my **notebook.ipynb** and review it.
+
+    jupyter notebook
+
+ 2\. From within the virtual environment from inside the project directory, kindly run the **train.py** script to train the best evaluated model on the dataset from **crop_yield.csv** and save the model
+   
+    python train.py
+
+
+
+
+## Model Deployment ##
+
+ 1\. Please run the **gunicorn** WSGI http server to make the flask web-service (**predict.py)** serving the model, active for consumption/use by running this command inside the virtual environment from inside the project folder
+
+    gunicorn --bind 0.0.0.0:9696 predict:app
+
+ 2\. When the gunicorn server had started successfully, open another powershell window, go to WSL and cd to project folder. Then activate the virtual environment. Now, you can run the **test.py** from within the virtual environment from inside the project directory to see if the deployed model is served through the web service and what the model predicts.
+
+    python test.py
+
+
+
+## Containerization ##
+
+ 1\. Install Docker Deskop on you Windows 11 (currently I have Docker Desktop version 4.35.0). If you have other set up, you may install docker accordingly (Mac/Linux/Windows 10)
+
+ 2\. In the settings of Docker Desktop, in the 'General' tab/menu please ensure you have "Use the WSL 2 based engine (Windows Home can only run the WSL 2 backend)" checked/ticked.
+
+ 3\. Again, in the settings, "WSL integration" sub menu in the "Resources" menu/tab, please ensure "Enable integration with my default WSL distro" is checked/ticked. Further ensure that the "Enable integration with additional distros:" slider button is turned on.
+
+ 4\. Start the Docker Engine in the Docker Desktop, if not already started.
+
+ 5\. Now open one WSL tab and go the project directory. From there, issue the command to build the docker image.. The image would be built as mentioned in the submitted **Dockerfile**.
+
+    docker build -t capstone2-mlz .
+
+ 6\. After the image is built and the application successfully containerized, we can list the image from the WSL by following command
+
+    docker images
+
+ 7\.  Now run the containerized application.
+
+    docker run -it --rm -p 9696:9696 capstone2-mlz
+
+ 8\. Now activate virtual environment in another WSL tab from inside the project directory and run the **test.py** from that virtual environment from inside the project directory to get the **predict service** from the containerized application
+
+    python test.py
+
+
+## Cloud Deployment ##
+
+ 1\. Navigate to project directory and issue the following command to install awsebcli (Amazon Web Service Elastic Beanstalk Command Line Interface)
+
+    pipenv install aswebcli --dev
+
+ 2\. Activate your virtual environment from the project directory and issue following command to create your AWS EB application from your virtual environment form inside the project directory (my application name is capstone2-mlz-cloud and region is eu-north-1)
+
+    eb init -p docker -r eu-north-1 capstone2-mlz-cloud
+
+ 3\. After you application is successfully created, from the virtual environment from within the project directory, issue following command to launch the environment. On successful launching of the cloud environment, We shall also get the URL/Domain name here starting with "Application available at <...> "
+
+    eb create capstone2-mlz-cloud --enable-spot
+
+ 4\. I have used this URL in a test script namely cloud_test.py to test the containerized application hosted at the AWS EB. We run it to check if our dockerized application in the cloud is working is properly and the model is serving the prediction.
+
+    python cloud_test.py
+
+
+ 
