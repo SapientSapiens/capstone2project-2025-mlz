@@ -69,6 +69,9 @@ def send_request(sample, sample_id):
 
 
 # Send test samples for prediction
+print("Prediction for 1st Test Sample from the Test Dataset")
 send_request(test_sample_1, 1)
-#send_request(test_sample_2, 2)
-#send_request(test_sample_3, 3)
+print("Prediction for 2nd Test Sample from the Test Dataset")
+send_request(test_sample_2, 2)
+print("Prediction Unseen Sample that is not in the entire Dataset")
+send_request(test_sample_3, 3)

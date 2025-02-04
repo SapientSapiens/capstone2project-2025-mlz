@@ -23,7 +23,7 @@ df['irrigation_used'] = df['irrigation_used'].astype('object')
 # Removing data with anomalous negative value in the target feature.
 df = df[df['yield_tons_per_hectare'] >= 0]
 
-# Apply Feature Selection
+# Apply Feature Selection as derieved from notebook
 categorical_columns = ['fertilizer_used', 'irrigation_used', 'soil_type']
 continuous_columns = ['rainfall_mm', 'temperature_celsius']
 
@@ -36,8 +36,6 @@ categorical_encoded_df = pd.DataFrame(categorical_encoded, columns=dv.get_featur
 
 # preparing the conttinuous features
 df_continuous  = df[continuous_columns]
-# Removing target feature and days_to_harvest' feature before scaling as it was not included in the selected features during Feature Selection
-#features = df_continuous.drop(columns=["yield_tons_per_hectare", "days_to_harvest"])
 # Initialize scalers
 minmax_scaler = MinMaxScaler()
 # Apply MinMaxScaler 
