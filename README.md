@@ -49,7 +49,7 @@
 
  The proposed model aims to achieve:
 
- - **High Accuracy**:  The model will use techniques such as ensemble methods (e.g., Random Forest, Gradient Boosting) and feature selection to improve accuracy and handle the complexities of the dataset.
+ - **High Accuracy**:  The model shall be trained post feature selection to improve accuracy and applied feature scaling, if required for handling the complexities of the dataset.
  - **Generalizability**: The model will be trained to generalize across different input features, ensuring its adaptability to various real-world agricultural settings.
  - **Actionable Insights**: The model will provide interpretability through feature importance analysis, helping users understand the relative impact of different factors on crop yield.
 
@@ -78,4 +78,32 @@
   - Checking count distribution and unique values of the categorical features
   - Analysis of the target variable with respect to the categorical attributes of the dataset
   - Analysis of the dataset for detecting outliers in the continuous features
-  - 
+  - Checking the correlation among the all the continuous feature including the target feature with a Heatmap analysis
+  - Analysing the inpact of the most significant independent feature in the feature matrix on the target variable for different soil types.
+  
+ These exercises could be found in my notebook.ipynb
+ 
+
+
+
+## Model Training ##
+
+ As a pre-requisite of the model training, I had to:
+
+  - Encode the categorical features with DictVectorizer
+  - Apply Min Max Scaling to the continuous features for mitigating vast differences in scale of values among them detected at EDA phase.
+  - Feature Selection through Lasso regularization and Recursive Feature Elimination (RFE).
+  - Splitting of the dataset into full-train, test, train and validation with target features split accordingly
+
+ Then the model training ensued for training multiple models and tuning their parameters which include the following:
+
+  - Trained the model with Linear Regression, DecisionTreeRegressor and RandomForrestRegressor.
+  - Evaluated best parameters for the DecisionTreeRegressor and RandomForrestRegressor models.
+  - With the best evaluated paramenters for each of the models, compared the R² and RMSE metrics and found the best model.
+  - For the best evaluated model, did training with the full train dataset and validated with the test dataset.
+
+ These exercises could be found in my notebook.ipynb
+
+
+
+## Exporting the Training Notebook to Script ##
