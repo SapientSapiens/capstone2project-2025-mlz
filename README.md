@@ -14,7 +14,7 @@
 
  **The Dataset**
 
- The dataset is sourced from Kaggle's Agriculture Crop Yield Prediction dataset and can be found at <https://www.kaggle.com/datasets/samuelotiattakorah/agriculture-crop-yield/data>. It contains data for 1,000,000 records, each with various features related to agricultural practices and environmental conditions. The dataset is well-suited for regression tasks, with the goal of predicting the crop yield (in tons per hectare) based on factors such as weather conditions, soil type, irrigation practices, and crop variety.
+ The dataset is sourced from Kaggle's Agriculture Crop Yield Prediction dataset and can be found at <https://www.kaggle.com/datasets/samuelotiattakorah/agriculture-crop-yield/data>. A copy of the dataset is also enclosed in this project repository. It contains data for 1,000,000 records, each with various features related to agricultural practices and environmental conditions. The dataset is well-suited for regression tasks, with the goal of predicting the crop yield (in tons per hectare) based on factors such as weather conditions, soil type, irrigation practices, and crop variety.
 
  Key Attributes of the Dataset:
 
