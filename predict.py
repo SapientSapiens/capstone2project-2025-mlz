@@ -31,10 +31,15 @@ def predict():
         # Convert the input data into a DataFrame
         df_test = pd.DataFrame(data)
 
-        #Selecting only the relevant columns (same as during training)
-        categorical_columns = ['fertilizer_used', 'irrigation_used', 'soil_type=Clay', 'soil_type=Loam', 'soil_type=Sandy', 
-                            'soil_type=Chalky', 'soil_type=Peaty', 'soil_type=Silt'] # Categorical features
+        # Make column name uniform with lowercwse
+        df_test.columns = df_test.columns.str.lower()
 
+        # set boolean features as categorical features
+        df_test['fertilizer_used'] = df_test['fertilizer_used'].astype('object')
+        df_test['irrigation_used'] = df_test['irrigation_used'].astype('object')
+
+        #Selecting only the relevant columns (same as during training)
+        categorical_columns = ['fertilizer_used', 'irrigation_used', 'soil_type'] # Categorical features
         continuous_columns = ['rainfall_mm', 'temperature_celsius']  # Continuous features
 
         # Extract data for categorical and continuous columns

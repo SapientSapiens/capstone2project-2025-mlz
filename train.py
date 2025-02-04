@@ -13,7 +13,7 @@ df = pd.read_csv('crop_yield.csv')
 
 # data cleaning, preparation and feature selection
 
-# Make column values uniform in categorical columns
+# Make column name uniform with lowercwse
 df.columns = df.columns.str.lower()
 
 # set boolean features as categorical features
