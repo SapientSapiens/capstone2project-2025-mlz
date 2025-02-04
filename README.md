@@ -211,13 +211,19 @@
 
 ## Cloud Deployment ##
 
- 1\. Navigate to project directory and issue the following command to install awsebcli (Amazon Web Service Elastic Beanstalk Command Line Interface)
+ 1\. Navigate to project directory and issue the following command to install awsebcli (Amazon Web Service Elastic Beanstalk Command Line Interface), if not installed already.
 
     pipenv install aswebcli --dev
+
+   ![alt text](images/image11.png)
 
  2\. Activate your virtual environment from the project directory and issue following command to create your AWS EB application from your virtual environment form inside the project directory (my application name is capstone2-mlz-cloud and region is eu-north-1)
 
     eb init -p docker -r eu-north-1 capstone2-mlz-cloud
+
+   ![alt text](images/image12.png)
+
+   ![alt text](images/image13.png)
 
  3\. After you application is successfully created, from the virtual environment from within the project directory, issue following command to launch the environment. On successful launching of the cloud environment, We shall also get the URL/Domain name here starting with "Application available at <...> "
 
