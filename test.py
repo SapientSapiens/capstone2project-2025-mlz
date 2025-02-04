@@ -4,7 +4,7 @@ import numpy as np
 import requests
 
 # Define the Flask API endpoint
-url_predict = "http://127.0.0.1:5000/predict"  # Update this if hosted elsewhere
+url_predict = "http://localhost:9696/predict"  # Update this if hosted elsewhere
 
 # Sample test data from the given dataset
 test_sample_1 = {
@@ -43,9 +43,8 @@ test_sample_3 = {
     "Fertilizer_Used": True,
     "Irrigation_Used": True,
     "Weather_Condition": "Cloudy",
-    "Days_to_Harvest": 95,
+    "Days_to_Harvest": 95   
 } # Yield_tons_per_hectare to be predicted 
-
 
 
 # Remove the target feature from test samples
@@ -57,6 +56,7 @@ for sample in (test_sample_1, test_sample_2):
 def send_request(sample, sample_id):
     try:
         response = requests.post(url_predict, json=sample, timeout=5).json()
+        print("Response received:", response)
         predicted_yield = response["predicted_yield"]
         print(f"Test Sample {sample_id}: Predicted Yield = {predicted_yield} tons per hectare")
     except requests.exceptions.ConnectionError as e:
@@ -70,5 +70,5 @@ def send_request(sample, sample_id):
 
 # Send test samples for prediction
 send_request(test_sample_1, 1)
-send_request(test_sample_2, 2)
-send_request(test_sample_3, 3)
+#send_request(test_sample_2, 2)
+#send_request(test_sample_3, 3)

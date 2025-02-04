@@ -167,6 +167,8 @@
 
     gunicorn --bind 0.0.0.0:9696 predict:app
 
+   ![alt text](images/image5.png)
+
  2\. When the gunicorn server had started successfully, open another powershell window, go to WSL and cd to project folder. Then activate the virtual environment. Now, you can run the **test.py** from within the virtual environment from inside the project directory to see if the deployed model is served through the web service and what the model predicts.
 
     python test.py

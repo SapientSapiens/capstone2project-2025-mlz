@@ -23,39 +23,38 @@ df['irrigation_used'] = df['irrigation_used'].astype('object')
 # Removing data with anomalous negative value in the target feature.
 df = df[df['yield_tons_per_hectare'] >= 0]
 
-# categorize the continuous and categorical value columns
-categorical = df.select_dtypes(include='object')
-continuous = df.select_dtypes(exclude='object')
-
+# Apply Feature Selection
+categorical_columns = ['fertilizer_used', 'irrigation_used', 'soil_type']
+continuous_columns = ['rainfall_mm', 'temperature_celsius']
 
 # preparing the categorical features
 dv  = DictVectorizer(sparse =False)
-categorical_encoded_dict = df[categorical.columns].to_dict(orient='records')
+categorical_encoded_dict = df[categorical_columns].to_dict(orient='records')
 categorical_encoded = dv.fit_transform(categorical_encoded_dict)
 # convert the numpy array to a dataframe
 categorical_encoded_df = pd.DataFrame(categorical_encoded, columns=dv.get_feature_names_out())
 
 # preparing the conttinuous features
-df_continuous  = df[continuous.columns]
-# Select features for scaling
-features = df_continuous.drop(columns=["yield_tons_per_hectare"])
+df_continuous  = df[continuous_columns]
+# Removing target feature and days_to_harvest' feature before scaling as it was not included in the selected features during Feature Selection
+#features = df_continuous.drop(columns=["yield_tons_per_hectare", "days_to_harvest"])
 # Initialize scalers
 minmax_scaler = MinMaxScaler()
 # Apply MinMaxScaler 
 df_minmax_scaled = pd.DataFrame(
-    minmax_scaler.fit_transform(features),
-    columns=features.columns
+    minmax_scaler.fit_transform(df_continuous),
+    columns=df_continuous.columns
 )
 
 
 # concate both the categorical and continuous independent features
-X = pd.concat([categorical_encoded_df, df_minmax_scaled], axis=1)
+X = pd.concat([df_minmax_scaled, categorical_encoded_df], axis=1)
 # also set the target variable
 y = df['yield_tons_per_hectare']
 
 
-# apply feature selection
-final_selected_features = ['rainfall_mm', 'fertilizer_used', 'irrigation_used', 'temperature_celsius', 'soil_type=Clay', 'soil_type=Loam', 'soil_type=Sandy', 'soil_type=Chalky', 'soil_type=Peaty', 'soil_type=Silt']
+# Selected Features for training dataset
+final_selected_features = ['rainfall_mm', 'temperature_celsius', 'fertilizer_used', 'irrigation_used', 'soil_type=Chalky','soil_type=Clay', 'soil_type=Loam', 'soil_type=Peaty', 'soil_type=Sandy', 'soil_type=Silt']
 feature_selected_X = X[final_selected_features]
 
 ## prepare for the train test split by joining the processed feature matrix with the target feature
