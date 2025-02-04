@@ -38,7 +38,7 @@ def predict():
         df_test['fertilizer_used'] = df_test['fertilizer_used'].astype('object')
         df_test['irrigation_used'] = df_test['irrigation_used'].astype('object')
 
-        #Selecting only the relevant columns (same as during training)
+        # Selecting only the relevant columns (same as during training)
         categorical_columns = ['fertilizer_used', 'irrigation_used', 'soil_type'] # Categorical features
         continuous_columns = ['rainfall_mm', 'temperature_celsius']  # Continuous features
 

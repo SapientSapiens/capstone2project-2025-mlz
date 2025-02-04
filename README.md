@@ -137,12 +137,13 @@
 
      pipenv install
 
+   ![alt text](images/image1.png)
 
  6\. Activate the new virtual environment created:
 
      pipenv shell
 
-
+   ![alt text](images/image2.png)
 
 
 ## Reproducibility ##
@@ -151,11 +152,13 @@
 
     jupyter notebook
 
+   ![alt text](images/image3.png)
+
  2\. From within the virtual environment from inside the project directory, kindly run the **train.py** script to train the best evaluated model on the dataset from **crop_yield.csv** and save the model
    
     python train.py
 
-
+   ![alt text](images/image4.png)
 
 
 ## Model Deployment ##
